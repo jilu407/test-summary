@@ -24,6 +24,7 @@ jobs:
     steps:
       # Runs a set of commands using the runners shell
       - name: write results
+        if: always() && true
         uses: actions/github-script@v6
         with:
           script: |
@@ -39,16 +40,9 @@ jobs:
               completed_at: date.toISOString(),
               head_sha: context.sha,
               status: "completed",
-              #if  ( 1 >= 1) {
-              #conclusion: "failure"
-              #}
-              #else
-              #{
-              #conclusion: "success"
-              #}
               conclusion: "success",
               output: {
                 title: "Analyzer Results",
                 summary: `${details}`,
               },
-            })  
+            })
